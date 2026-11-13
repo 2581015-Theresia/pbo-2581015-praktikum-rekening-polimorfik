@@ -5,6 +5,12 @@ public class Giro extends Rekening {
         super (nomor, pemilik, saldo);
         this.batasOverdraft = batasOverdraft;
     }
+
+    @Override
+    public int biayaAdminBulanan() {
+        return 15000;
+    }
+
     @Override
     public boolean tarik(int jumlah) {
         if (jumlah <= 0 || saldo - jumlah < -batasOverdraft){
