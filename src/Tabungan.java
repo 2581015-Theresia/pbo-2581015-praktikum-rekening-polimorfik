@@ -1,4 +1,4 @@
-public class Tabungan extends Rekening {
+public class Tabungan extends Rekening implements BerBunga {
     private double bungaPersen;
 
     public Tabungan(String nomor, String pemilik, int saldo, double bungaPersen){
@@ -6,6 +6,16 @@ public class Tabungan extends Rekening {
         this.bungaPersen = bungaPersen;
     }
 
+    @Override
+    public int biayaAdminBulanan() {
+        if (saldo >= 1000000) {
+            return 0;
+        }
+
+        return 5000;
+    }
+
+    @Override
     public int tambahBunga(){
         int bunga = (int) Math.round(saldo * bungaPersen / 100);
         setor(bunga);
@@ -15,6 +25,6 @@ public class Tabungan extends Rekening {
     @Override
     public void cetakInfo() {
         super.cetakInfo();
-        System.out.println(" Tabungan, bunga " + bungaPersen + "%per bulan");
+        System.out.printf("Tabungan, bunga %.1f%% per bulan%n", bungaPersen);
     }
 }
